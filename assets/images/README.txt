@@ -1,0 +1,1 @@
+Fundly native identity assets are generated as part of the project build. The app config references the required icon, splash, favicon, and Android adaptive icon filenames.
