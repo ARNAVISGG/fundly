@@ -1,5 +1,6 @@
 {
-  "name": "app-template",
+  "name": "fundly",
+  "description": "A portrait-first crowdfunding app for backing local projects, creative work, and community ideas.",
   "version": "1.0.0",
   "private": true,
   "main": "expo-router/entry",
