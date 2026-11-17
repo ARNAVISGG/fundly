@@ -67,18 +67,18 @@ export default function CampaignDetailScreen() {
           <View style={styles.heroStats}><Text style={styles.heroStat}>{campaign.backerCount} backers</Text><Text style={styles.heroDivider}>•</Text><Text style={styles.heroStat}>{Math.max(0, Math.round((campaign.raised / Math.max(campaign.goal, 1)) * 100))}% funded</Text></View>
         </View>
 
-        {confirmation ? <View style={styles.confirmation}><View style={styles.confirmationIcon}><Ionicons name="checkmark" size={17} color={palette.white} /></View><Text style={styles.confirmationText}>{confirmation}</Text><Pressable onPress={() => setConfirmation("")}><Ionicons name="close" size={17} color={palette.mint} /></Pressable></View> : null}
+        {confirmation ? <View style={styles.confirmation}><View style={styles.confirmationIcon}><Ionicons name="checkmark" size={17} color={palette.white} /></View><Text style={styles.confirmationText}>{confirmation}</Text><Pressable onPress={() => setConfirmation("")} accessibilityLabel="Dismiss confirmation"><Ionicons name="close" size={17} color={palette.mint} /></Pressable></View> : null}
 
-        <Text style={styles.sectionTitle}>Why this matters</Text>
+        <Text style={styles.sectionTitle}>About this campaign</Text>
         <Text style={styles.story}>{campaign.story}</Text>
 
-        <View style={styles.impactRow}><StatCard value={formatMoney(campaign.raised * 0.08)} label="estimated platform fee" accent="blue" /><View style={styles.impactGap} /><StatCard value={String(campaign.backerCount)} label="people in the circle" accent="mint" /></View>
+        <View style={styles.impactRow}><StatCard value={formatMoney(campaign.raised * 0.08)} label="fee estimate" accent="blue" /><View style={styles.impactGap} /><StatCard value={String(campaign.backerCount)} label="backers" accent="mint" /></View>
 
-        <View style={styles.rewardHeader}><View><Text style={styles.sectionTitle}>Choose your thank-you</Text><Text style={styles.sectionSub}>Tap a tier to preview your simulated pledge.</Text></View><Ionicons name="gift-outline" size={22} color={palette.blue} /></View>
+        <View style={styles.rewardHeader}><View><Text style={styles.sectionTitle}>Reward tiers</Text><Text style={styles.sectionSub}>Select a tier to preview your pledge.</Text></View><Ionicons name="gift-outline" size={22} color={palette.blue} /></View>
         <View style={styles.rewards}>{campaign.tiers.map((tier) => <RewardTierCard key={tier.id} tier={tier} selected={tier.id === selectedTier} onPress={() => { setSelectedTier(tier.id); setConfirmation(""); }} />)}</View>
 
-        {selected ? <View style={styles.pledgeDock}><View style={styles.pledgeCopy}><Text style={styles.pledgeLabel}>Ready to back</Text><Text style={styles.pledgeAmount}>{formatMoney(selected.amount)} · {selected.title}</Text></View><Pressable onPress={() => void pledge()} style={({ pressed }) => [styles.pledgeButton, pressed && styles.pressed]}><Text style={styles.pledgeButtonText}>{pledging ? "Saving…" : "Pledge"}</Text><Ionicons name="arrow-forward" size={17} color={palette.white} /></Pressable></View> : null}
-        <Text style={styles.footerNote}>Simulated pledge · no real payment taken</Text>
+        {selected ? <View style={styles.pledgeDock}><View style={styles.pledgeCopy}><Text style={styles.pledgeLabel}>Selected reward</Text><Text style={styles.pledgeAmount}>{formatMoney(selected.amount)} · {selected.title}</Text></View><Pressable onPress={() => void pledge()} style={({ pressed }) => [styles.pledgeButton, pressed && styles.pressed]}><Text style={styles.pledgeButtonText}>{pledging ? "Saving…" : "Confirm pledge"}</Text><Ionicons name="arrow-forward" size={17} color={palette.white} /></Pressable></View> : null}
+        <Text style={styles.footerNote}>Simulated pledge · no payment taken</Text>
       </ScrollView>
     </ScreenContainer>
   );

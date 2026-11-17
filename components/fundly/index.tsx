@@ -57,7 +57,7 @@ export function CampaignCard({ campaign, onPress }: { campaign: Campaign; onPres
     <Pressable onPress={onPress} style={({ pressed }) => [styles.campaignCard, pressed && styles.pressed]}>
       <View style={styles.cardTopRow}>
         <CategoryPill label={campaign.category} />
-        <Ionicons name="open-outline" size={20} color={palette.muted} />
+        <Ionicons name="chevron-forward" size={20} color={palette.muted} />
       </View>
       <Text style={styles.campaignTitle}>{campaign.title}</Text>
       <ProgressBar raised={campaign.raised} goal={campaign.goal} />
@@ -93,9 +93,9 @@ export function RewardTierCard({ tier, onPress, selected = false }: { tier: Rewa
         </View>
       </View>
       <Text style={styles.rewardTitle}>{tier.title}</Text>
-      <Text style={styles.rewardDescription}>{tier.description || "A thank-you from the campaign team."}</Text>
+      <Text style={styles.rewardDescription}>{tier.description || "A reward from the campaign team."}</Text>
       <View style={styles.rewardAction}>
-        <Text style={styles.rewardActionText}>{selected ? "Selected" : "Back this tier"}</Text>
+        <Text style={styles.rewardActionText}>{selected ? "Selected" : "Select reward"}</Text>
         <Ionicons name="arrow-forward" size={16} color={palette.blue} />
       </View>
     </Pressable>
@@ -112,8 +112,8 @@ export function EmptyState({ onLaunch }: { onLaunch: () => void }) {
       <View style={styles.emptyIcon}>
         <Ionicons name="sparkles-outline" size={28} color={palette.coral} />
       </View>
-      <Text style={styles.emptyTitle}>Your next big idea starts here.</Text>
-      <Text style={styles.emptyText}>Launch a campaign and invite your first backers to build momentum together.</Text>
+      <Text style={styles.emptyTitle}>No campaigns yet.</Text>
+      <Text style={styles.emptyText}>Start one for a project, business, or community idea you want people to support.</Text>
       <Pressable onPress={onLaunch} style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]}>
         <Text style={styles.primaryButtonText}>Launch a campaign</Text>
         <Ionicons name="arrow-forward" size={18} color={palette.white} />

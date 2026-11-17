@@ -50,31 +50,25 @@ export default function DiscoverScreen() {
       >
         <View style={styles.header}>
           <BrandMark />
-          <View style={styles.headerActions}>
-            <Pressable style={styles.headerIcon} onPress={() => void refresh(true)} accessibilityLabel="Refresh campaigns">
-              <Ionicons name="refresh-outline" size={19} color={palette.ink} />
-            </Pressable>
-            <View style={styles.avatar}><Text style={styles.avatarText}>F</Text></View>
-          </View>
         </View>
 
         <View style={styles.hero}>
-          <Text style={styles.kicker}>COMMUNITY FUNDING, MADE HUMAN</Text>
-          <Text style={styles.heroTitle}>Small sparks.{"\n"}Real momentum.</Text>
-          <Text style={styles.heroBody}>Back the ideas that make your corner of the world better.</Text>
+          <Text style={styles.kicker}>BACK GOOD IDEAS</Text>
+          <Text style={styles.heroTitle}>Fund what matters{"\n"}to your community.</Text>
+          <Text style={styles.heroBody}>Support local projects, creative work, and practical fixes.</Text>
         </View>
 
         <View style={styles.statsRow}>
           <StatCard value={formatMoney(totalRaised)} label="raised together" accent="mint" />
           <View style={styles.statGap} />
-          <StatCard value={formatMoney(totalRaised * 0.08)} label="estimated fees" accent="blue" />
+          <StatCard value={formatMoney(totalRaised * 0.08)} label="fee estimate" accent="blue" />
           <View style={styles.statGap} />
           <StatCard value={String(totalBackers)} label="backers" accent="coral" />
         </View>
 
         <View style={styles.sectionHeader}>
           <View>
-            <Text style={styles.sectionTitle}>Ideas worth backing</Text>
+            <Text style={styles.sectionTitle}>Campaigns</Text>
             <Text style={styles.sectionSubtitle}>{campaigns.length} live {campaigns.length === 1 ? "campaign" : "campaigns"}</Text>
           </View>
           <Pressable onPress={() => router.push("/launch")} style={styles.launchMini}>
@@ -95,7 +89,7 @@ export default function DiscoverScreen() {
         </ScrollView>
 
         {loading ? (
-          <View style={styles.loading}><ActivityIndicator color={palette.blue} /><Text style={styles.loadingText}>Finding good ideas…</Text></View>
+          <View style={styles.loading}><ActivityIndicator color={palette.blue} /><Text style={styles.loadingText}>Loading campaigns…</Text></View>
         ) : visibleCampaigns.length ? (
           <View style={styles.list}>
             {visibleCampaigns.map((campaign) => (
@@ -108,7 +102,7 @@ export default function DiscoverScreen() {
           <EmptyState onLaunch={() => router.push("/launch")} />
         )}
 
-        <Text style={styles.footerNote}>Pledges are simulated. Fundly keeps an 8% platform fee on funds raised.</Text>
+        <Text style={styles.footerNote}>Simulated pledges · 8% platform fee estimate</Text>
       </ScrollView>
     </ScreenContainer>
   );
@@ -116,11 +110,7 @@ export default function DiscoverScreen() {
 
 const styles = StyleSheet.create({
   content: { paddingHorizontal: 18, paddingTop: 18, paddingBottom: 30 },
-  header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
-  headerActions: { flexDirection: "row", alignItems: "center", gap: 10 },
-  headerIcon: { width: 38, height: 38, borderRadius: 14, backgroundColor: palette.paper, borderWidth: 1, borderColor: palette.line, alignItems: "center", justifyContent: "center" },
-  avatar: { width: 38, height: 38, borderRadius: 14, backgroundColor: palette.coralSoft, alignItems: "center", justifyContent: "center" },
-  avatarText: { color: palette.coral, fontWeight: "800", fontSize: 14 },
+  header: { flexDirection: "row", alignItems: "center" },
   hero: { paddingTop: 32, paddingBottom: 24 },
   kicker: { color: palette.blue, fontSize: 10, fontWeight: "900", letterSpacing: 1.4, marginBottom: 11 },
   heroTitle: { color: palette.ink, fontSize: 36, lineHeight: 39, fontWeight: "900", letterSpacing: -1.5 },

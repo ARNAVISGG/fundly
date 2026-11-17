@@ -60,10 +60,10 @@ export default function LaunchScreen() {
     <ScreenContainer edges={["top"]} containerClassName="bg-[#F6F7FB]">
       <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === "ios" ? "padding" : undefined}>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-          <View style={styles.header}><BrandMark compact /><View style={styles.headerBadge}><Ionicons name="sparkles" size={14} color={palette.coral} /><Text style={styles.headerBadgeText}>Make it real</Text></View></View>
-          <Text style={styles.kicker}>START WITH A SPARK</Text>
+          <View style={styles.header}><BrandMark compact /></View>
+          <Text style={styles.kicker}>CREATE A CAMPAIGN</Text>
           <Text style={styles.title}>Launch a campaign</Text>
-          <Text style={styles.intro}>Tell people what you are building and give them a reason to join in.</Text>
+          <Text style={styles.intro}>Set a goal, add rewards, and share what you’re building.</Text>
 
           <View style={styles.formCard}>
             <Field label="Campaign title" value={title} onChangeText={setTitle} placeholder="e.g. A community garden toolshed" />
@@ -77,7 +77,7 @@ export default function LaunchScreen() {
             <Field label="Funding goal" value={goal} onChangeText={setGoal} placeholder="5000" keyboardType="numeric" prefix="$" />
             <Field label="Your story" value={story} onChangeText={setStory} placeholder="What are you raising money for?" multiline />
 
-            <View style={styles.rewardHeading}><View><Text style={styles.sectionTitle}>Reward tiers</Text><Text style={styles.helper}>Give backers a simple way to join in.</Text></View><View style={styles.tierCount}><Text style={styles.tierCountText}>{tiers.length}</Text></View></View>
+            <View style={styles.rewardHeading}><View><Text style={styles.sectionTitle}>Reward tiers</Text><Text style={styles.helper}>Offer a simple reward for each level of support.</Text></View><View style={styles.tierCount}><Text style={styles.tierCountText}>{tiers.length}</Text></View></View>
             {tiers.map((item, index) => (
               <View key={`${item.title}-${index}`} style={styles.draftTier}><View style={styles.draftTierCopy}><Text style={styles.draftTierAmount}>{formatMoney(Number(item.amount))}</Text><Text style={styles.draftTierTitle}>{item.title}</Text></View><Pressable onPress={() => setTiers((current) => current.filter((_, itemIndex) => itemIndex !== index))} accessibilityLabel={`Remove ${item.title}`}><Ionicons name="close-circle-outline" size={22} color={palette.coral} /></Pressable></View>
             ))}
@@ -90,7 +90,7 @@ export default function LaunchScreen() {
 
             {error ? <View style={styles.errorBox}><Ionicons name="alert-circle-outline" size={18} color={palette.coral} /><Text style={styles.errorText}>{error}</Text></View> : null}
             <Pressable disabled={saving} onPress={() => void submit()} style={({ pressed }) => [styles.submitButton, (pressed || saving) && styles.pressed]}><Text style={styles.submitText}>{saving ? "Publishing…" : "Launch campaign"}</Text><Ionicons name="arrow-forward" size={18} color={palette.white} /></Pressable>
-            <Text style={styles.finePrint}>Pledges are simulated. Fundly keeps an 8% platform fee on funds raised.</Text>
+            <Text style={styles.finePrint}>Simulated pledges · 8% platform fee estimate</Text>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -105,9 +105,7 @@ function Field({ label, value, onChangeText, placeholder, keyboardType, multilin
 const styles = StyleSheet.create({
   flex: { flex: 1 },
   content: { paddingHorizontal: 18, paddingTop: 18, paddingBottom: 30 },
-  header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 34 },
-  headerBadge: { flexDirection: "row", alignItems: "center", gap: 5, borderRadius: 999, backgroundColor: palette.coralSoft, paddingHorizontal: 10, paddingVertical: 7 },
-  headerBadgeText: { color: palette.coral, fontSize: 11, fontWeight: "800" },
+  header: { flexDirection: "row", alignItems: "center", marginBottom: 34 },
   kicker: { color: palette.blue, fontSize: 10, fontWeight: "900", letterSpacing: 1.4, marginBottom: 11 },
   title: { color: palette.ink, fontSize: 32, lineHeight: 38, fontWeight: "900", letterSpacing: -1 },
   intro: { color: palette.muted, fontSize: 15, lineHeight: 22, marginTop: 10, marginBottom: 24, maxWidth: 310 },
