@@ -2,6 +2,8 @@
 
 Fundly is a small, portrait-first crowdfunding app for backing local projects, creative work, and community ideas.
 
+[![CI](https://github.com/ARNAVISGG/fundly/actions/workflows/ci.yml/badge.svg)](https://github.com/ARNAVISGG/fundly/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 The app is intentionally honest about its scope: campaigns and pledges are persisted locally for the demo, and pledges are simulated. No payment is taken.
 
 ![Fundly Discover screen](docs/screenshots/discover.png)

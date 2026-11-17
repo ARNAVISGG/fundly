@@ -1,6 +1,14 @@
 {
   "name": "fundly",
   "description": "A portrait-first crowdfunding app for backing local projects, creative work, and community ideas.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ARNAVISGG/fundly.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ARNAVISGG/fundly/issues"
+  },
+  "homepage": "https://github.com/ARNAVISGG/fundly#readme",
   "version": "1.0.0",
   "private": true,
   "main": "expo-router/entry",
