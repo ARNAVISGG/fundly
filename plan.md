@@ -62,7 +62,7 @@ Fundly is a portrait-first crowdfunding app adapted from the supplied `Fundly.ht
 
 ## Frontend/backend serving
 
-This is a managed mobile app using the fixed Expo Metro listener on 8081 and starter API listener on 3000. The first implementation does not require a new server endpoint or managed database capability: AsyncStorage provides durable local persistence for campaigns and simulated pledge records. The starter providers remain intact for future auth/API expansion.
+The project keeps the fixed Expo Metro listener on 8081 and starter API listener on 3000 for development. The public web root is exported to static `dist` files with `pnpm build:web`; the existing API remains available in a small Node container with `/api/health` readiness for the managed hybrid publish contract. Campaign persistence still uses AsyncStorage in the mobile app, and the starter providers remain intact for future auth/API expansion.
 
 ## Public website introduction
 
