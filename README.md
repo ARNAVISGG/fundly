@@ -17,6 +17,10 @@ The app is intentionally honest about its scope: campaigns and pledges are persi
 - Launch a campaign with a title, category, goal, story, and one or more reward tiers.
 - Persist campaign and pledge data locally across sessions.
 
+## Public website
+
+The web root is intentionally a product-introduction site, not a desktop copy of the mobile app. It explains the Fundly idea, shows the real app in context, walks through Discover / Back / Launch, and links to the open-source code. Native builds keep the full campaign experience.
+
 ## Screenshots
 
 | Discover | Launch | Campaign detail |

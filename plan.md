@@ -64,6 +64,16 @@ Fundly is a portrait-first crowdfunding app adapted from the supplied `Fundly.ht
 
 This is a managed mobile app using the fixed Expo Metro listener on 8081 and starter API listener on 3000. The first implementation does not require a new server endpoint or managed database capability: AsyncStorage provides durable local persistence for campaigns and simulated pledge records. The starter providers remain intact for future auth/API expansion.
 
+## Public website introduction
+
+The web root is a marketing landing page rather than the full mobile app. On web, the Discover route is replaced by a responsive Fundly introduction with the brand wordmark, one real app screenshot, a concise product promise, feature explanations, a three-step “Discover / Back / Launch” model, transparent demo limitations, and a link to the public source repository. Native platforms retain the existing Discover / Launch tab experience.
+
+- Keep the landing page focused on explaining the app, not reproducing every mobile interaction.
+- Use the existing Fundly blue, mint, coral, warm paper, and ink palette with fewer decorative elements and no fake account controls.
+- Include route-level web metadata and a static `public/manus-routes.json` declaration for the public root route.
+- Reuse verified Fundly screenshots as product evidence rather than generic stock imagery.
+- Preserve the existing Expo/React Native project and avoid adding a separate web framework or service.
+
 ## Material constraints
 
 - Preserve the installed Expo/React Native/TypeScript starter and existing app identifiers.

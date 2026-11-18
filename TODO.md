@@ -1,5 +1,13 @@
 # Fundly TODO
 
+## Introduce Fundly on the public web
+
+- [x] On web, the root route is a focused marketing website for introducing Fundly rather than the full campaign app.
+- [x] The website explains what Fundly is, shows a real app screenshot, communicates the core Discover / Back / Launch flow, and describes the primary features and demo limitations.
+- [x] The website uses the existing Fundly identity with a restrained responsive layout, clear calls to action, readable typography, and no fake account controls or decorative UI that implies unavailable functionality.
+- [x] The website includes route-level title and description metadata and a synchronized `public/manus-routes.json` entry for the public root route.
+- [x] Native app routes remain available with the existing Discover, Launch, detail, pledge, and persistence behavior.
+
 ## Discover campaigns and show fundraising context
 
 - [x] The app opens to a portrait-mobile Discover experience where users can browse persisted campaigns in a readable stacked list.

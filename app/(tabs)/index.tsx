@@ -1,16 +1,22 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useMemo, useState } from "react";
-import { ActivityIndicator, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Platform, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { CampaignCard, BrandMark, EmptyState, formatMoney, palette, StatCard } from "@/components/fundly";
+import { MarketingSite } from "@/components/fundly/marketing-site";
 import { ScreenContainer } from "@/components/screen-container";
 import { loadCampaigns } from "@/lib/campaign-store";
 import { CAMPAIGN_CATEGORIES, type Campaign, type CampaignCategory } from "@/shared/types";
 
 const filters: ("All" | CampaignCategory)[] = ["All", ...CAMPAIGN_CATEGORIES];
 
-export default function DiscoverScreen() {
+export default function DiscoverRoute() {
+  if (Platform.OS === "web") return <MarketingSite />;
+  return <DiscoverScreen />;
+}
+
+function DiscoverScreen() {
   const router = useRouter();
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [filter, setFilter] = useState<(typeof filters)[number]>("All");
