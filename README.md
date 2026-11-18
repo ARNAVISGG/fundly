@@ -53,6 +53,12 @@ pnpm dev
 
 The development scripts start the Expo web preview on port `8081` and the starter API on port `3000`.
 
+To export the public marketing site as static web files:
+
+```bash
+pnpm build:web
+```
+
 For native development:
 
 ```bash
