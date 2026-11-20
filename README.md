@@ -21,6 +21,10 @@ The app is intentionally honest about its scope: campaigns and pledges are persi
 
 The web root is intentionally a product-introduction site, not a desktop copy of the mobile app. It explains the Fundly idea, shows the real app in context, walks through Discover / Back / Launch, and links to the open-source code. Native builds keep the full campaign experience.
 
+## Premium product areas
+
+The app now uses a charcoal and muted-champagne visual system. Achievements are derived from persisted campaign totals and backer counts, Fundly News is explicitly labeled sample content until verified editorial records exist, and Wallet is a `DEMO MODE` sandbox with validated add/withdraw flows. Authenticated sessions use protected database wallet records; unauthenticated previews fall back to local demo persistence. No real payment gateway, bank details, or real-money claim is included.
+
 ## Screenshots
 
 | Discover | Launch | Campaign detail |

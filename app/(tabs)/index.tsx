@@ -48,7 +48,7 @@ function DiscoverScreen() {
   const totalBackers = campaigns.reduce((sum, campaign) => sum + campaign.backerCount, 0);
 
   return (
-    <ScreenContainer edges={["top"]} containerClassName="bg-[#F6F7FB]">
+    <ScreenContainer edges={["top"]} containerClassName="bg-[#090909]">
       <ScrollView
         showsVerticalScrollIndicator={false}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void refresh(true)} tintColor={palette.blue} />}

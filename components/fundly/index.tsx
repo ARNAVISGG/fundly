@@ -4,17 +4,17 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import type { Campaign, RewardTier } from "@/shared/types";
 
 export const palette = {
-  ink: "#172033",
-  muted: "#6F788A",
-  paper: "#FFFDF9",
-  canvas: "#F6F7FB",
-  line: "#E7EAF0",
-  blue: "#2F6BFF",
-  blueSoft: "#EAF0FF",
-  mint: "#63BCA9",
-  mintSoft: "#E5F5F1",
-  coral: "#F06A58",
-  coralSoft: "#FFF0EC",
+  ink: "#F5F5F5",
+  muted: "#929292",
+  paper: "#181818",
+  canvas: "#090909",
+  line: "#292929",
+  blue: "#C5BBA8",
+  blueSoft: "#24221E",
+  mint: "#9AB8A7",
+  mintSoft: "#1B2420",
+  coral: "#D9897F",
+  coralSoft: "#291E1C",
   white: "#FFFFFF",
 };
 
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   brandTextCompact: { fontSize: 17 },
   pill: { alignSelf: "flex-start", borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6, backgroundColor: palette.blueSoft },
   pillText: { color: palette.blue, fontSize: 11, fontWeight: "800", letterSpacing: 0.3, textTransform: "uppercase" },
-  campaignCard: { backgroundColor: palette.paper, borderWidth: 1, borderColor: palette.line, borderRadius: 22, padding: 18, marginBottom: 13 },
+  campaignCard: { backgroundColor: palette.paper, borderWidth: 1, borderColor: palette.line, borderRadius: 12, padding: 18, marginBottom: 13 },
   pressed: { opacity: 0.78, transform: [{ scale: 0.99 }] },
   cardTopRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 14 },
   campaignTitle: { color: palette.ink, fontSize: 18, fontWeight: "800", lineHeight: 23, letterSpacing: -0.35, marginBottom: 18 },

@@ -1,82 +1,74 @@
-# Fundly implementation plan
+# Fundly premium redesign and feature expansion plan
 
 ## Product scope
 
-Fundly is a portrait-first crowdfunding app adapted from the supplied `Fundly.html` prototype. It keeps the core experience: browse campaigns, inspect fundraising progress and stories, choose a reward tier for a simulated pledge, and launch a campaign with at least one reward tier. Campaign data persists across app sessions using the starter's local persistence layer so the prototype is usable immediately without real payment processing.
+Upgrade the existing Fundly app in place. Preserve campaign discovery, campaign detail, simulated pledges, campaign launch, local persistence, the responsive product-introduction website, and the public GitHub repository. Add a premium charcoal fintech visual system and three connected product areas: Achievements, Fundly News, and a clearly labeled demo Wallet. No real payments, bank details, Stripe, or invented success claims.
 
 ## Implementation approach
 
-- Use the fixed Expo Router / React Native / TypeScript / NativeWind starter. Do not replace the starter or change its ports.
-- Use a single tab shell with two focused routes: **Discover** for campaign browsing and **Launch** for campaign creation. Campaign detail and pledge confirmation use route-driven modal-style screens so the back affordance stays predictable on mobile.
-- Keep campaign state in a small typed data layer backed by `@react-native-async-storage/async-storage`. Seed a few realistic campaigns on first launch so the app communicates its purpose immediately; afterwards, all launched campaigns and simulated pledges are read from and written to the local store.
-- Build reusable UI primitives for the Fundly wordmark, progress bar, category pill, campaign card, reward tier card, stat card, and bottom tab bar. Keep the user flow tap-friendly and avoid dense forms.
-- Preserve the prototype's 8% estimated platform fee language. Pledges add the selected reward amount to the campaign total and increment both campaign and tier backer counts; no payment provider or real charge is initiated.
-- Keep the implementation self-contained in the app and components folders, with a typed storage module in `lib/` and product types in `shared/`.
+- Replace the blue-and-white app styling with a deep-black / charcoal / soft-white / muted-silver system while preserving the signature rocket mark and compact editorial tone.
+- Keep the mobile-first Expo Router structure. Add focused routes for Achievements, Fundly News, Wallet, and individual News stories. Keep web root as the existing product-introduction site.
+- Store wallet demo balances and transaction history in the managed database through user-scoped tables and protected tRPC procedures. Validate positive finite INR amounts, prevent negative balances, use idempotent transaction IDs, and never expose another user's records.
+- Compute Achievements from actual campaign and pledge data. In the current prototype, campaign totals and backers remain the source of truth; achievements show zero/empty states when no qualifying data exists and never fabricate funding.
+- Seed Fundly News only with clearly labeled demo/sample stories. Add admin-only create/edit/remove procedures and a public list/detail surface that marks sample content until verified records are available.
+- Use loading, error, empty, and unauthorized states on all new screens. Keep actions touch-friendly and avoid decorative controls that imply unsupported functionality.
 
 ## Project structure
 
-- `app/_layout.tsx`: app providers and route stack configuration.
-- `app/(tabs)/_layout.tsx`: Discover / Launch tab shell.
-- `app/(tabs)/index.tsx`: campaign discovery, stats, filters, and empty/loading states.
-- `app/(tabs)/launch.tsx`: campaign creation form and reward-tier builder.
-- `app/campaign/[id].tsx`: campaign detail, progress, story, rewards, and simulated pledge action.
-- `components/fundly/*`: brand and reusable campaign UI primitives.
-- `lib/campaign-store.ts`: typed AsyncStorage persistence, seed data, campaign creation, and pledge updates.
-- `shared/types.ts`: campaign, tier, and category types.
-- `constants/theme.ts`: palette and typography tokens used by the Fundly surface.
-- `assets/images/*`: native launcher and splash identity assets, preserving the starter's required filenames.
+- `app/(tabs)/_layout.tsx`: compact navigation for Discover, Launch, Achievements, News, and Wallet.
+- `app/(tabs)/achievements.tsx`: data-driven achievement dashboard, milestones, history, and badges.
+- `app/(tabs)/news.tsx`: Fundly News editorial feed with demo/sample labels.
+- `app/(tabs)/wallet.tsx`: demo wallet balance, add/withdraw confirmation, and transaction history.
+- `app/news/[id].tsx`: detailed success-story article view.
+- `components/fundly/*`: shared dark palette, cards, badges, charts, wallet rows, and editorial components.
+- `lib/campaign-store.ts`: preserve existing campaign and simulated pledge persistence; expose derived stats for achievements.
+- `lib/demo-wallet-store.ts`: native/local fallback for unauthenticated demo preview only; server-backed wallet is preferred when an authenticated session exists.
+- `server/db.ts`, `server/routers.ts`, `drizzle/schema.ts`: user-scoped wallet, transaction, and Fundly News persistence with protected/admin procedures.
+- `shared/types.ts`: campaign, wallet, transaction, achievement, and news models.
+- `theme.config.js`, `constants/theme.ts`: premium charcoal palette.
 
 ## Design direction
 
 ### Alternatives considered
 
-- **Civic editorial warmth** — 0.07: optimistic community funding with paper-like surfaces and bright action color.
-- **Quiet fintech utility** — 0.05: restrained dashboard hierarchy with cool neutrals and compact metrics.
-- **Playful creator studio** — 0.04: expressive color blocks and energetic creator-first cards.
+- **Quiet luxury fintech** — 0.08: restrained charcoal surfaces, silver hierarchy, precise dividers, and rare champagne emphasis.
+- **Editorial black-book** — 0.06: magazine-like story layouts, high-contrast serif headlines, and monochrome campaign briefs.
+- **Creator terminal** — 0.04: dense utility panels, telemetry accents, and compact status instrumentation.
 
-### Chosen: Civic editorial warmth
+### Chosen: Quiet luxury fintech
 
-**Design Movement:** Modern civic editorial design: generous margins, soft paper surfaces, ink-like type hierarchy, and one confident signal color for action.
+**Design Movement:** Quiet luxury fintech: dark, tactile surfaces and precise editorial hierarchy instead of dashboard noise.
 
-**Core Principles:** Make community impact legible at a glance; keep calls to action obvious without feeling salesy; use compact cards that read like short editorial briefs; make every state feel reassuring and human.
+**Core Principles:** Make money and progress legible; use contrast instead of decoration; separate primary actions from supporting detail; be explicit about demo boundaries.
 
-**Color Philosophy:** Warm off-white and ink navy create trust and calm. Fundly blue is the signature action color, while a muted mint marks progress and successful impact. Coral is reserved for small moments of emphasis such as the launch spark and empty-state illustration.
+**Color Philosophy:** `#090909` is the calm canvas, `#111111` and `#181818` create depth, `#F5F5F5` carries trust, `#929292` reduces noise, and `#C5BBA8` acts as a rare premium signal rather than a glow.
 
-**Layout Paradigm:** A vertically paced feed with an editorial masthead, sticky-feeling summary band, and stacked campaign briefs. Detail pages open with a strong title and progress moment, then move into story and rewards rather than a dense dashboard.
+**Layout Paradigm:** A vertical product journal with one high-confidence summary at the top, followed by thin-divided sections and compact evidence rows. Avoid card grids that make every item feel equally important.
 
-**Signature Elements:** A tiny rocket/spark mark in the wordmark; rounded category pills with slightly tinted paper backgrounds; progress bars with a mint fill and a small milestone dot.
+**Signature Elements:** Champagne hairline dividers; small uppercase section labels; restrained metric numerals with milestone ticks.
 
-**Interaction Philosophy:** Tap targets should feel generous and direct. Browsing is low-friction; launching a campaign is guided in small sections; pledging confirms impact in plain language and never implies a real charge.
+**Interaction Philosophy:** Every tap explains what changes. Wallet actions always show DEMO MODE and confirmation. News labels sample stories. Empty states explain what data is missing instead of pretending.
 
-**Animation:** Use short, low-distance fades and vertical lifts when cards appear. Progress updates animate once after a pledge. Avoid looping or decorative motion that competes with the fundraising message.
+**Animation:** Short fades and 4–8px lifts only for route entry and confirmed wallet updates. No looping effects, neon glows, or celebratory confetti.
 
-**Typography System:** Use the starter's available system sans for reliable native rendering. Pair a heavier display weight for campaign titles with regular body copy and medium-weight labels. Use large numeric stats sparingly as editorial pull quotes.
+**Typography System:** Use the system sans for UI reliability, with heavier display weights for one headline and compact uppercase labels for metadata. Use tabular-looking numerals for balances and progress.
 
-**Brand Essence:** Everyday people turning good ideas into funded action; for local builders, creators, and neighbors; different because the funding story stays personal and transparent. Personality: hopeful, grounded, generous.
+**Brand Essence:** A trustworthy place to move good ideas forward; for backers and creators; different because the funding story stays transparent. Personality: composed, useful, credible.
 
-**Brand Voice:** Headlines are clear and encouraging; CTAs are active but never pushy; microcopy is transparent about simulation and fees. Example lines: “Small sparks. Real momentum.” and “Back this idea — simulated pledge, no payment taken.”
+**Brand Voice:** Clear, direct, and honest about what is simulated. Example lines: “See what your backing changed.” and “Demo balance only — no money moves.”
 
-**Wordmark & Logo:** A compact rocket trail leading into the “Fundly” wordmark, with the trail doubling as the dot/launch spark in the app icon.
+**Wordmark & Logo:** Preserve the Fundly rocket-spark mark, recolored to soft white with a champagne launch trail on dark surfaces.
 
-**Signature Brand Color:** Fundly blue `#2F6BFF`, an ownable, optimistic action blue used for primary CTAs and the launch spark.
+**Signature Brand Color:** Muted champagne `#C5BBA8`.
 
 ## Frontend/backend serving
 
-The project keeps the fixed Expo Metro listener on 8081 and starter API listener on 3000 for development. The public web root is exported to static `dist` files with `pnpm build:web`; the existing API remains available in a small Node container with `/api/health` readiness for the managed hybrid publish contract. Campaign persistence still uses AsyncStorage in the mobile app, and the starter providers remain intact for future auth/API expansion.
-
-## Public website introduction
-
-The web root is a marketing landing page rather than the full mobile app. On web, the Discover route is replaced by a responsive Fundly introduction with the brand wordmark, one real app screenshot, a concise product promise, feature explanations, a three-step “Discover / Back / Launch” model, transparent demo limitations, and a link to the public source repository. Native platforms retain the existing Discover / Launch tab experience.
-
-- Keep the landing page focused on explaining the app, not reproducing every mobile interaction.
-- Use the existing Fundly blue, mint, coral, warm paper, and ink palette with fewer decorative elements and no fake account controls.
-- Include route-level web metadata and a static `public/manus-routes.json` declaration for the public root route.
-- Reuse verified Fundly screenshots as product evidence rather than generic stock imagery.
-- Preserve the existing Expo/React Native project and avoid adding a separate web framework or service.
+The Expo Metro preview remains on port 8081 and the API remains on port 3000. The database tables are added through the existing Drizzle migration workflow. Published web continues to serve the focused marketing root from the static export with the existing API container and `/api/health` readiness contract.
 
 ## Material constraints
 
-- Preserve the installed Expo/React Native/TypeScript starter and existing app identifiers.
-- Keep the app functional on native and Expo Web; gate any web-only confirmation behavior if needed.
-- Do not add a real payment flow or claim that pledges transfer money.
-- Use the supplied prototype as the interaction reference; no additional external imagery is required beyond native branding assets.
+- Do not break current campaigns, profiles, authentication, pledge behavior, launch flow, or public marketing website.
+- Do not add Stripe, bank account fields, real deposits, real withdrawals, or claims that demo money is real.
+- Do not invent verified Fundly success stories, people, or funding statistics; sample content must be marked.
+- Use actual campaign data for achievements and show meaningful empty states where records do not qualify.
+- Keep navigation coherent across mobile and desktop web while the web root remains an introduction page rather than the full app shell.

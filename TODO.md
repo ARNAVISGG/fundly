@@ -1,42 +1,35 @@
-# Fundly TODO
+# Fundly premium redesign and feature expansion TODO
 
-## Introduce Fundly on the public web
+## Premium dark product experience
 
-- [x] On web, the root route is a focused marketing website for introducing Fundly rather than the full campaign app.
-- [x] The website explains what Fundly is, shows a real app screenshot, communicates the core Discover / Back / Launch flow, and describes the primary features and demo limitations.
-- [x] The website uses the existing Fundly identity with a restrained responsive layout, clear calls to action, readable typography, and no fake account controls or decorative UI that implies unavailable functionality.
-- [x] The website includes route-level title and description metadata and a synchronized `public/manus-routes.json` entry for the public root route.
-- [x] Native app routes remain available with the existing Discover, Launch, detail, pledge, and persistence behavior.
+- [x] Replace the blue-and-white theme with primary background `#090909`, secondary background `#111111`, cards `#181818`, elevated surfaces `#202020`, soft-white text `#F5F5F5`, muted gray `#929292`, subtle borders `#292929`, and muted champagne `#C5BBA8`.
+- [x] Redesign existing Discover, Launch, campaign detail, and website-connected app surfaces with premium fintech hierarchy, refined buttons and inputs, consistent icons, restrained borders/shadows, dark-mode charts, intentional empty states, and smooth low-distance transitions.
+- [ ] Remove excessive gradients, glow effects, oversized headings, repetitive rounded cards, decorative fake controls, and generic AI-looking illustrations without breaking existing campaign interactions.
 
-## Discover campaigns and show fundraising context
+## Data-driven Achievements
 
-- [x] The app opens to a portrait-mobile Discover experience where users can browse persisted campaigns in a readable stacked list.
-- [x] Each campaign card shows its category, title, raised amount, goal amount, backer count, and a visible progress bar.
-- [x] The Discover experience shows total funds raised across campaigns and an approximate platform fee calculated at 8% of funds raised.
-- [x] The app includes clear navigation between campaign discovery and campaign launch, with accessible tap targets and readable layouts.
+- [x] Add a dedicated Achievements section showing total money funded to the user’s campaigns, successful campaign count, supporters, biggest funded campaign, campaign funding milestones, funding history, and recent achievements from actual application data.
+- [x] Add distinct badges for First Supporter, First ₹1,000 Raised, ₹10,000 Milestone, ₹50,000 Milestone, Fully Funded, and Multiple Successful Campaigns.
+- [x] Show progress toward the next milestone and use clear zero/empty states instead of fake achievements or real-looking invented totals.
 
-## View campaign details and reward tiers
+## Fundly News
 
-- [x] Tapping a campaign opens a detail view with a back affordance, category, title, progress toward goal, raised amount, goal amount, backer count, and the campaign story.
-- [x] The detail view lists all available reward tiers with pledge amount, reward name, description, and tier backer count.
-- [x] Each reward tier provides a clear action to back that tier.
+- [ ] Add a dedicated Fundly News section with a featured story, latest stories, trending campaigns, creator interviews, and fundraiser tips using editorial layouts.
+- [ ] Show campaign creator profile, project description, original goal, amount raised, supporter count, creation date, completion date, photos/updates, and lessons learned on detailed story pages when data exists.
+- [x] Mark all seeded content as sample/demo until verified stories exist; never invent real people, success stories, or funding statistics.
+- [x] Add admin-only create, edit, and remove operations with secure authorization; public users can browse and read published stories.
 
-## Record simulated pledges
+## Demo Wallet
 
-- [x] Selecting a reward tier records a simulated pledge without taking real payment.
-- [x] A successful simulated pledge increments the campaign raised amount and campaign backer count, increments the selected tier backer count, persists the updated data, and communicates the no-payment nature of the action.
-- [x] The updated progress and backer totals are visible after returning to the campaign detail or discovery view.
+- [x] Add a Wallet section with available DEMO balance, total DEMO added, total DEMO withdrawals, recent transactions, and a persistent DEMO MODE label.
+- [x] Add Money accepts INR input and presets, validates positive finite amounts, shows confirmation, updates the simulated balance, and creates a transaction record.
+- [x] Withdraw Money validates sufficient simulated balance, shows confirmation, deducts only demo balance, and records the withdrawal.
+- [x] Transaction history shows transaction ID, type, amount, date/time, status, and updated balance with distinct deposit/withdrawal indicators.
+- [x] Persist wallet balances and transactions in user-scoped database records, prevent negative balances and duplicate transactions, validate all amounts, and prevent access to another user’s wallet.
+- [x] Do not integrate Stripe, payment gateways, bank details, real deposits, real withdrawals, or claims that demo money is real.
 
-## Launch campaigns with reward tiers
+## Navigation, data, and quality
 
-- [x] The Launch flow collects a campaign title, category, funding goal, and story.
-- [x] The creator can add one or more reward tiers, each with an amount, reward name, and description, and can remove draft tiers before publishing.
-- [x] Launch is blocked unless a title, valid funding goal, and at least one reward tier are provided; the user receives clear inline guidance.
-- [x] Publishing creates a persisted campaign with zero raised funds and zero backers, then returns the user to the browsable campaign list where it is visible.
-- [x] The form explains that Fundly keeps an 8% platform fee on funds raised and that pledges are simulated.
-
-## Persist the Fundly experience
-
-- [x] Campaigns, reward tiers, campaign totals, and simulated pledge counts persist across app sessions using the managed Expo starter's local persistence layer.
-- [x] First launch contains a small set of seeded example campaigns so the app is understandable before the user creates content; later launches reuse the user's stored data.
-- [x] Native launcher/splash branding uses the Fundly rocket-spark identity and the app keeps the starter's required mobile project structure and runtime ports.
+- [x] Integrate Achievements, Fundly News, and Wallet into the existing mobile/desktop navigation without clutter.
+- [x] Add database structures, protected procedures, admin authorization, achievement calculations, campaign funding statistics, news management, loading states, error handling, and empty states while preserving current app behavior.
+- [ ] Test wallet updates and persistence, achievement calculations, Fundly News display, desktop/mobile layouts, navigation, and the absence of leftover blue-and-white styling before delivery.

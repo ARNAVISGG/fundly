@@ -1,1 +1,1 @@
-{"routes":[{"path":"/","title":"Fundly — Back good ideas"}]}
+{"routes":[{"path":"/","title":"Fundly — Back good ideas"},{"path":"/launch","title":"Launch a campaign"},{"path":"/campaign/:id","title":"Campaign detail"},{"path":"/achievements","title":"Fundly achievements"},{"path":"/news","title":"Fundly News"},{"path":"/news/:id","title":"Fundly News story"},{"path":"/wallet","title":"Demo wallet"}]}

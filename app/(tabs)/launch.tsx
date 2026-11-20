@@ -57,7 +57,7 @@ export default function LaunchScreen() {
   };
 
   return (
-    <ScreenContainer edges={["top"]} containerClassName="bg-[#F6F7FB]">
+    <ScreenContainer edges={["top"]} containerClassName="bg-[#090909]">
       <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === "ios" ? "padding" : undefined}>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
           <View style={styles.header}><BrandMark compact /></View>

@@ -2,23 +2,23 @@ import Head from "expo-router/head";
 import { Image, Linking, Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 
 const palette = {
-  paper: "#FFFDF9",
-  canvas: "#F6F7FB",
-  ink: "#172033",
-  muted: "#6B7280",
-  line: "#E5E7EF",
-  blue: "#2F6BFF",
-  blueSoft: "#EAF0FF",
-  mint: "#5CBEA9",
-  mintSoft: "#E4F5F0",
-  coral: "#F46F57",
-  coralSoft: "#FFF0EC",
+  paper: "#181818",
+  canvas: "#090909",
+  ink: "#F5F5F5",
+  muted: "#929292",
+  line: "#292929",
+  blue: "#C5BBA8",
+  blueSoft: "#24221E",
+  mint: "#9AB8A7",
+  mintSoft: "#1B2420",
+  coral: "#D9897F",
+  coralSoft: "#291E1C",
   white: "#FFFFFF",
 };
 
-const discoverImage = require("../../assets/images/marketing-discover.png");
-const launchImage = require("../../assets/images/marketing-launch.png");
-const detailImage = require("../../assets/images/marketing-detail.png");
+const discoverImage = require("../../assets/images/marketing-wallet.png");
+const launchImage = require("../../assets/images/marketing-achievements.png");
+const detailImage = require("../../assets/images/marketing-news.png");
 
 function scrollToSection(id: string) {
   if (Platform.OS === "web" && typeof document !== "undefined") {
@@ -114,11 +114,11 @@ export function MarketingSite() {
             <View style={[styles.heroVisual, compact && styles.heroVisualCompact]}>
               <View style={styles.phoneGlow} />
               <View style={styles.phoneFrame}>
-                <Image source={discoverImage} style={styles.phoneImage} resizeMode="cover" accessibilityLabel="Fundly Discover screen showing live campaigns" />
+                <Image source={discoverImage} style={styles.phoneImage} resizeMode="cover" accessibilityLabel="Fundly demo Wallet screen" />
               </View>
               <View style={styles.floatCard}>
                 <View style={styles.floatDot} />
-                <View><Text style={styles.floatValue}>3 live campaigns</Text><Text style={styles.floatLabel}>small sparks, real momentum</Text></View>
+                <View><Text style={styles.floatValue}>Demo mode, clearly labeled</Text><Text style={styles.floatLabel}>no money moves</Text></View>
               </View>
             </View>
           </View>
@@ -154,12 +154,12 @@ export function MarketingSite() {
             <View style={styles.proofCopy}>
               <SectionEyebrow>BUILT TO BE UNDERSTOOD</SectionEyebrow>
               <Text style={[styles.proofTitle, compact && styles.proofTitleCompact]}>The app stays close to the action.</Text>
-              <Text style={styles.proofBody}>Campaign detail, reward tiers, and launch flow are all designed for a small screen first—so the important part never gets buried.</Text>
+              <Text style={styles.proofBody}>Achievements, Fundly News, and Wallet are designed for a small screen first—so progress, stories, and demo boundaries never get buried.</Text>
               <View style={styles.proofMeta}><View style={styles.metaPill}><Text style={styles.metaPillText}>Expo</Text></View><View style={styles.metaPill}><Text style={styles.metaPillText}>React Native</Text></View><View style={styles.metaPill}><Text style={styles.metaPillText}>TypeScript</Text></View></View>
             </View>
             <View style={styles.proofScreens}>
-              <Image source={detailImage} style={[styles.smallPhone, styles.smallPhoneDetail]} resizeMode="cover" accessibilityLabel="Fundly campaign detail screen" />
-              <Image source={launchImage} style={[styles.smallPhone, styles.smallPhoneLaunch]} resizeMode="cover" accessibilityLabel="Fundly campaign launch screen" />
+              <Image source={detailImage} style={[styles.smallPhone, styles.smallPhoneDetail]} resizeMode="cover" accessibilityLabel="Fundly News screen" />
+              <Image source={launchImage} style={[styles.smallPhone, styles.smallPhoneLaunch]} resizeMode="cover" accessibilityLabel="Fundly Achievements screen" />
             </View>
           </View>
 
@@ -191,9 +191,9 @@ const styles = StyleSheet.create({
   navLinks: { flex: 1, flexDirection: "row", justifyContent: "center", gap: 30 },
   navLinksCompact: { display: "none" },
   navLink: { color: palette.muted, fontSize: 14, fontWeight: "700" },
-  navCta: { backgroundColor: palette.ink, borderRadius: 999, paddingHorizontal: 17, paddingVertical: 10 },
+  navCta: { backgroundColor: palette.paper, borderWidth: 1, borderColor: palette.line, borderRadius: 999, paddingHorizontal: 17, paddingVertical: 10 },
   navCtaCompact: { paddingHorizontal: 13, paddingVertical: 9 },
-  navCtaText: { color: palette.white, fontSize: 13, fontWeight: "800" },
+  navCtaText: { color: palette.ink, fontSize: 13, fontWeight: "800" },
   hero: { minHeight: 690, flexDirection: "row", alignItems: "center", gap: 56, paddingVertical: 64 },
   heroCompact: { minHeight: 0, flexDirection: "column", alignItems: "stretch", gap: 24, paddingVertical: 52 },
   heroCopy: { flex: 1, maxWidth: 550 },
@@ -204,8 +204,8 @@ const styles = StyleSheet.create({
   heroBody: { color: palette.muted, fontSize: 20, lineHeight: 30, marginTop: 24, maxWidth: 500 },
   heroActions: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12, marginTop: 32 },
   primaryButton: { flexDirection: "row", alignItems: "center", gap: 12, backgroundColor: palette.blue, borderRadius: 16, paddingHorizontal: 20, paddingVertical: 15 },
-  primaryButtonText: { color: palette.white, fontSize: 14, fontWeight: "900" },
-  primaryArrow: { color: palette.white, fontSize: 22, lineHeight: 18 },
+  primaryButtonText: { color: palette.canvas, fontSize: 14, fontWeight: "900" },
+  primaryArrow: { color: palette.canvas, fontSize: 22, lineHeight: 18 },
   quietButton: { flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 12, paddingVertical: 15 },
   quietButtonText: { color: palette.ink, fontSize: 14, fontWeight: "800" },
   quietArrow: { color: palette.blue, fontSize: 21, lineHeight: 18 },
@@ -232,19 +232,19 @@ const styles = StyleSheet.create({
   featureCopy: { flex: 1, paddingBottom: 26, borderBottomWidth: 1, borderBottomColor: palette.line },
   featureTitle: { color: palette.ink, fontSize: 21, fontWeight: "900", letterSpacing: -0.5 },
   featureBody: { color: palette.muted, fontSize: 15, lineHeight: 23, marginTop: 8, maxWidth: 470 },
-  howSection: { borderRadius: 34, backgroundColor: palette.ink, padding: 58, flexDirection: "row", gap: 70, alignItems: "center" },
+  howSection: { borderRadius: 34, backgroundColor: palette.paper, borderWidth: 1, borderColor: palette.line, padding: 58, flexDirection: "row", gap: 70, alignItems: "center" },
   howSectionCompact: { borderRadius: 26, padding: 28, flexDirection: "column", gap: 34, alignItems: "stretch" },
   howCopy: { flex: 1, maxWidth: 500 },
-  howTitle: { color: palette.white, fontSize: 46, lineHeight: 51, fontWeight: "900", letterSpacing: -2 },
+  howTitle: { color: palette.ink, fontSize: 46, lineHeight: 51, fontWeight: "900", letterSpacing: -2 },
   howTitleCompact: { fontSize: 36, lineHeight: 41, letterSpacing: -1.2 },
   howBody: { color: "#B7BFCE", fontSize: 17, lineHeight: 27, marginTop: 20, marginBottom: 28 },
   stepStack: { flex: 1, gap: 12, maxWidth: 430 },
-  stepCard: { borderRadius: 20, borderWidth: 1, borderColor: "#39445B", padding: 22, backgroundColor: "#202A3E" },
+  stepCard: { borderRadius: 20, borderWidth: 1, borderColor: palette.line, padding: 22, backgroundColor: "#202020" },
   stepCardRaised: { transform: [{ translateX: -22 }], backgroundColor: palette.blue, borderColor: palette.blue },
   stepCardRaisedCompact: { transform: [{ translateX: 0 }] },
   stepIndex: { color: palette.mint, fontSize: 11, fontWeight: "900", letterSpacing: 1.5 },
-  stepTitle: { color: palette.white, fontSize: 23, fontWeight: "900", marginTop: 8 },
-  stepBody: { color: "#B7BFCE", fontSize: 14, lineHeight: 21, marginTop: 5 },
+  stepTitle: { color: palette.ink, fontSize: 23, fontWeight: "900", marginTop: 8 },
+  stepBody: { color: palette.muted, fontSize: 14, lineHeight: 21, marginTop: 5 },
   productProof: { paddingVertical: 110, flexDirection: "row", alignItems: "center", gap: 70 },
   productProofCompact: { paddingVertical: 70, flexDirection: "column", alignItems: "stretch", gap: 30 },
   proofCopy: { flex: 1, maxWidth: 480 },

@@ -48,15 +48,15 @@ export default function CampaignDetailScreen() {
   };
 
   if (loading) {
-    return <ScreenContainer containerClassName="bg-[#F6F7FB]"><View style={styles.center}><ActivityIndicator color={palette.blue} /></View></ScreenContainer>;
+    return <ScreenContainer containerClassName="bg-[#090909]"><View style={styles.center}><ActivityIndicator color={palette.blue} /></View></ScreenContainer>;
   }
 
   if (!campaign) {
-    return <ScreenContainer containerClassName="bg-[#F6F7FB]"><View style={styles.center}><Text style={styles.notFound}>Campaign not found.</Text><Pressable onPress={() => router.back()}><Text style={styles.backLink}>Go back</Text></Pressable></View></ScreenContainer>;
+    return <ScreenContainer containerClassName="bg-[#090909]"><View style={styles.center}><Text style={styles.notFound}>Campaign not found.</Text><Pressable onPress={() => router.back()}><Text style={styles.backLink}>Go back</Text></Pressable></View></ScreenContainer>;
   }
 
   return (
-    <ScreenContainer edges={["top"]} containerClassName="bg-[#F6F7FB]">
+    <ScreenContainer edges={["top"]} containerClassName="bg-[#090909]">
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
         <View style={styles.topbar}><Pressable onPress={() => router.back()} style={styles.backButton} accessibilityLabel="Go back"><Ionicons name="arrow-back" size={20} color={palette.ink} /></Pressable><BrandMark compact /><View style={styles.topbarSpacer} /></View>
         <View style={styles.heroCard}>
